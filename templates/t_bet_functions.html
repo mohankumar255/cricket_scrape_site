@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<link href="https://fonts.googleapis.com/css?family=Droid+Serif|Playfair+Display" type="text/css" rel="stylesheet">
+   <style>
+
+    body{
+    background-image:url("https://images.pexels.com/photos/2291006/pexels-photo-2291006.jpeg?auto=compress&cs=tinysrgb&w=600")
+    }
+
+    #bg{
+width: 200px;
+height: 200px;
+border: 4px solid blue;
+}
+#submit_button{
+ width:100px;
+ height:30px;
+ margin-top:40px;
+ margin-left:100
+ padding-top:30px;
+ padding-bottom:20px;
+ color:white;
+ background-color:green;
+ border-radius:30px;
+}
+#submit_button:hover{
+background-color:#43A6C6;
+color:white;
+
+}
+
+   </style>
+
+
+
+<script>
+function unselect_all(){
+let unselct_ele = document.getElementByName('all_selections');
+unselct_ele.checked = false;
+}
+
+function select_all(){
+let select_elements = document.getElementsByName('functions');
+let length_of_selections= select_elements.length;
+for (var x = 0 ; x<=length_of_selections ; x++){
+select_elements[x].checked = true;
+
+}
+}
+
+   function showmessage(){
+   alert("Checking Selected Functions ...");
+   }
+</script>
+
+</head>
+<body style="background-color:#f0f8ff;">
+<div class="title" align="center" style="color:white;">
+    <h3>Select Checks for {{site_name}}</h3>
+</div>
+
+<form action="/t_bet_check_site" method="post">
+        <input name="site_id" value="{{site_id}}" hidden>
+<table border="2px" align="center" style="border-color:blue;border-style:solid;">
+<input name="all_selections" onclick="select_all()" type="checkbox">
+    {%for function_name in functions_list%}
+    <tr style="border-radius: 12px;">
+        <th style="color:white;border-color:blue;">
+            <h4>{{function_name.0}}</h4>
+            {%if function_name.2%}
+            {{function_name.2}}
+            {%endif%}
+        </th>
+        <th>
+            <input type="checkbox" name="functions" value="{{function_name.1}}" onclick="unselect_all()">
+        </th>
+
+
+    </tr>
+    {%endfor%}
+    <tr>
+
+        <th ><button id="submit_button" onclick="showmessage()"><h3 style="font-family:Sans-serif;font-size:10px;">SUBMIT</h3></button></th>
+    </tr>
+    </table>
+
+</form>
+
+<script type = "text/javascript">
+
+</script>
+</body>
+</html>

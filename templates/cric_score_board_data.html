@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <h2 align="center">
+    Batters  Data
+  </h2>
+<table border="2" align="center">
+
+  <tr>
+    <th>
+      Batter Name
+    </th>
+    <th>
+      Total Balls
+    </th>
+    <th>
+      Total Runs
+    </th>
+    <th>
+      Strike Rate
+    </th>
+  </tr>
+  {%for batter_data in  batters_data%}
+  <tr>
+    <td>
+{{batter_data.0}}
+    </td>
+     <td>
+{{batter_data.3}}
+    </td>
+     <td>
+{{batter_data.2}}
+    </td>
+     <td>
+{{batter_data.6}}
+    </td>
+  </tr>
+  {%endfor%}
+  <tr>
+  </tr>
+</table>
+</div>
+
+<div align="center">
+  <h2>
+    Bowlers Data
+  </h2>
+<table border="2" align="center">
+  <tr>
+    <th>
+      Bowler Name
+    </th>
+    <th>
+      Total Balls
+    </th>
+    <th>
+      Total Runs
+    </th>
+    <th>
+      Total Wickets
+    </th>
+    <th>
+      Economy Rate
+    </th>
+  </tr>
+  {%for bowler_data in bowler_data%}
+  <tr>
+    <td>
+      {{bowler_data.0}}
+    </td>
+    <td>
+      {{bowler_data.2}}
+    </td>
+    <td>
+      {{bowler_data.4}}
+    </td>
+    <td>
+      {{bowler_data.3}}
+    </td>
+<td>
+      {{bowler_data.7}}
+    </td>
+  </tr>
+  {%endfor%}
+</table>
+</div>
+</body>
+</html>

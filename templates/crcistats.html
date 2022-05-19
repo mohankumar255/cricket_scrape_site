@@ -1,0 +1,167 @@
+{%include 'base.html'%}
+
+<table align="center" border="2">
+    <form action="/cricket_stats" method="post">
+    <tr>
+        <th>
+          Home Team:  <select name="home_team" onchange="this.form.submit()">
+            <option value="{{home_team}}">{{home_team}}</option>
+
+            {%for team in get_all_teams_list%}
+<option value="{{team}}">{{team}}</option>
+            {%endfor%}
+            </select>
+        </th>
+        <th>
+         Away Team:   <select name="away_team" onchange="this.form.submit()">
+                        <option value="{{away_team}}">{{away_team}}</option>
+
+            {%for team in get_all_teams_list%}
+                <option value="{{team}}">{{team}}</option>
+            {%endfor%}
+        </select>
+        </th>
+    </tr>
+        <tr>
+           <th>
+               <button>Submit</button>
+           </th>
+        </tr>
+        </form>
+</table>
+    {%if data.get('players_stats')%}
+
+<table align="center" border="2">
+    <tr>
+        <th> Home Team</th>
+                <th>Away Team</th>
+        <th>Match Winner</th>
+        <th>Stadium</th>
+    </tr>
+
+    {% for match_data in data.get('stats') %}
+<tr>
+
+        {%for data in match_data%}
+        <td>
+            {{data.0}}
+        </td>
+        {%endfor%}
+
+    </tr>
+
+    {%endfor%}
+<tr>
+    <th colspan="4">winning count </th>
+    <th>{{data.get('home_win_count')}}</th>
+        <th>{{data.get('away_win_count')}}</th>
+
+</tr>
+   <table align="center" border="2">
+<tr>
+    <th>Player Name</th>
+    <th>Total Balls</th>
+    <th>Total Runs</th>
+    <th>Strike rate</th>
+</tr>
+{%for data1 in data.get('home_players_rating_data').0 %}
+       <tr>
+           <td>
+               {{data1.0}}
+           </td>
+<td>
+    {{data1.2}}
+</td>
+           <td>
+              {{data1.3}}
+           </td>
+           <td>
+               {{data1.4}}
+           </td>
+       </tr>
+{%endfor%}
+
+<br>
+       <br>
+       <tr>
+    <th>Player Name</th>
+    <th>Total Balls</th>
+    <th>Total Runs</th>
+    <th>Strike rate</th>
+</tr>
+{%for data1 in data.get('away_team_rating_data').0 %}
+       <tr>
+           <td>
+               {{data1.0}}
+           </td>
+<td>
+    {{data1.2}}
+</td>
+           <td>
+              {{data1.3}}
+           </td>
+           <td>
+               {{data1.4}}
+           </td>
+       </tr>
+{%endfor%}
+
+
+   </table>
+
+    <table align="center" border="2">
+<tr>
+    <td>
+
+      <table align="center" border="2">
+        <tr>
+            <th>Home Team Squad</th>
+        </tr>
+        {%for player_data in data.get('home_team_players')%}
+        <tr>
+            <td>
+                {{player_data.0}}
+            </td>
+
+        </tr>
+        {%endfor%}
+    </table>
+
+    </td>
+
+
+
+    <td>
+
+
+    <table align="center" border="2">
+
+        <tr>
+            <th>Away Team Squad</th>
+        </tr>
+        {%for player_data in data.get('away_team_players')%}
+        <tr>
+            <td>
+                {{player_data.0}}
+            </td>
+
+        </tr>
+        {%endfor%}
+    </table>
+
+    </td>
+</tr>
+
+    </table>
+    {%endif%}
+</table>
+{%if data.get('players_stats')%}
+<div align="center">
+    {%for i in data.get('players_stats_data')%}
+    <h4 style="background-color:gray;color:white;width:40%">
+        {{i}}
+    </h4>
+    {%endfor%}
+</div>
+{%endif%}
+</div>

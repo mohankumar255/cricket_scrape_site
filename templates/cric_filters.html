@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>Title</title>
+<script>
+function date(){
+    alert(date1);
+}
+    </script>
+</head>
+
+<body>
+<table border="2" width="400px" align="center">
+    <tr>
+<form name="/cricket" method="post">
+        <td>
+            Sport *:
+            <select name="dd_sport">
+
+               <option value="3">Cricket</option>
+            </select>
+        </td>
+        <input name ='home_team' value="All" hidden>
+    <input name ='away_team' value="All" hidden>
+    <td width="500px">
+   Season: <select name="seasons" onchange="this.form.submit()">
+             {%if is_select_season %}
+        <option value="{{season_name}}">{{season_name}}</option>
+{%endif%}
+                         <option value="All">All</option>
+
+        {%for season in seasons%}
+        <option value="{{season}}">{{season}}</option>
+        {%endfor%}
+    </select>
+    </td>
+</form>
+    </tr>
+<tr>
+
+                <td width="500px">
+        <form name="/cricket" method="post">
+            <input name="dd_sport" value="{{select_sport_details.1}}" hidden>
+            {%if is_select_season%}
+            <input name="seasons" value="{{season_name}}" hidden>
+            {%endif%}
+        <input name="away_team" value="All" hidden>
+  Hometeam *:  <select name="home_team" onchange="this.form.submit()">
+        {%if is_home_team_select%}
+        <option value="{{select_home_team}}">{{select_home_team}}</option>
+        {%endif%}
+          <option value="All">All</option>
+        {%for team in home_teams%}
+        <option value="{{team}}">{{team}}</option>
+        {%endfor%}
+    </select>
+                    </form>
+                </td>
+
+        <td width="500px" >
+                        <form name="/cricket" method="post">
+                            <input name="dd_sport" value="{{select_sport_details.1}}" hidden>
+                            {%if is_select_season%}
+            <input name="seasons" value="{{season_name}}" hidden>
+                            {%endif%}
+                            {%if is_home_team_select%}
+                            <input name="home_team" value="{{select_home_team}}" hidden>
+                            {%endif%}
+
+    Away_team *: <select name="away_team">
+         {%if select_away_team%}
+                <option value="{{select_away_team}}">{{select_away_team}}</option>
+        {%endif%}
+        <option value="All">All</option>
+        {%for team in away_teams%}
+        <option value="{{team}}">{{team}}</option>
+        {%endfor%}
+    </select>
+        </td>
+
+
+</tr>
+
+<tr>
+    <td>
+        Overs Start *:
+        <input type="number" min="1" name="over_from" id="over_from1" width="10%" value="{{from_over}}">
+    </td>
+    <td>
+        Overs To *:
+        <input type="number" min="1" name="over_to" id ="over_to"  width="10%" value="{{to_over}}">
+    </td>
+</tr>
+    <tr>
+    <td colspan="2" align="center">
+<button onclick="date()">Submit</button>
+    </td>
+    </tr>
+    </form>
+</table>
+
+</body>
+</html>

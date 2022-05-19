@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	<head>
+        <!-- CSS only -->
+
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+        <style>
+
+
+            #username{
+            margin-bottom:20px;
+            padding-left:100px;
+            padding-right:50px;
+            width:400px;
+            height:40px;
+
+            }
+
+#password{
+            height:40px;
+            margin-bottom:20px;
+            padding-left:100px;
+            padding-right:50px;
+            width:400px;
+
+            }
+            lable{
+            margin-right:300px;
+            font-size:20px;
+            font-weight:solid;
+            }
+
+input:hover{
+border-radius:30px;
+}
+
+
+.btn{
+width:400px;
+background-color:green;
+color:white;
+padding-left:100px;
+padding-right:100px;
+pading-top:20px;
+pading-bottom:100px;
+height:40px;
+transition : 0.5s;
+}
+.btn:hover{
+
+background-color:red;
+color:white;
+border-radius:30px;
+}
+
+
+img{
+margin-left:100px;
+width:200px;
+height:200px;
+border:none;
+border-radius:100px;
+margin-top:30px;
+margin-bottom:20px;
+}
+.border{
+width:300px;
+display-inline-block;
+
+}
+        </style>
+
+
+	</head>
+<body style="background-color:white;">
+<div align="center">
+    <div align="center" class="border">
+		<div class="header">
+            <div class="image">
+            <img src="https://www.w3schools.com/howto/img_avatar2.png">
+</div>
+        </div><br>
+		<!-- h2 class="word" -->
+             <form action="submit_signin" id="SignIn" method="post">
+                  <!--<div class="msg">Please login</div> -->
+                    <lable>Username</lable><br>
+                    <input id="username" name="username" type="text" placeholder="Enter Your Username" class="textbox"/><br>
+                 <lable>Password</lable><br>
+                 <input id="password" name="password" type="password" placeholder="Enter Your Password" class="textbox"/><br>
+                    <input type="submit" class="btn" value="Sign In"><br>
+                </form>
+            <!--/h2 -->
+          </div>
+        </div>
+</body>
+</html>

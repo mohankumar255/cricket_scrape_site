@@ -1,0 +1,18 @@
+
+<ul class="nav nav-tabs" style="background-color:black;color:white; width:60%;">
+<li class="nav-item dropdown">
+    <a href="/cricket_stats">Stats</a>
+
+  </li>
+
+  <li class="nav-item dropdown">
+    {% if 'username' in session%}
+        <a href="/logout">Logout</a>
+    {%else%}
+            <a href="/login">Login</a>
+
+    {%endif%}
+
+  </li>
+
+</ul>

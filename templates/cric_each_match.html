@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <title>Title</title>
+</head>
+<body>
+
+<h3 align="center">Innings data</h3>
+<table border ="1" align="center">
+<tr>
+<td colspan="4" align="center">     <h3>Match {{data.0.2}}   {{data.0.3}} </h3>
+    </td>
+    </tr>
+<tr>
+    <th width="50%"> {{data.0.6}}</th>
+    <th width="50%"> {{data.0.7}}</th>
+</tr>
+<tr>
+    <th width="30%">Team Gender: {{data.0.1}}</th>
+    <th width="30%">Match Winner: {{data.0.0}}</th>
+</tr>
+<tr>
+    <th width="10%">     Season :{{season_name}} </th>
+    <th width="10%">Match Kickoff: {{data.0.8}} </th>
+</tr>
+    <tr>
+<div class="container" align="center">
+      <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#{{select_match_id}}xyz">Get Each Ball Data </button><br>
+
+            <div id="{{select_match_id}}xyz" class="collapse">
+        {% include 'cric_eachball_data.html' %}
+                {%include 'cric_score_board_data.html' %}
+            </div>
+
+</div>
+    </tr>
+</table>
+            <br>
+            {%for feed_data in data.1%}
+<br>
+
+<table border="2" align="center">
+    <thead>
+    <tr>
+     <th>Over Number</th>
+        <th>Bowler</th>
+        <th>Batter</th>
+        <th>Non Striker</th>
+        <th>Total runs</th>
+        <th>extras</th>
+               </tr>
+    </thead>
+
+
+    {%for value in feed_data.get('overs')%}
+<tr>
+    <th style="visibility:hidden;"></th>
+</tr>
+<tr>
+        <td style="color:white;"bgcolor="gray" >
+            {{value.get('over')}}
+        </td>
+        </tr>
+    {%for over_data in value.get('deliveries')%}
+
+<tr>
+    <td style="visibility:hidden;">
+    </td>
+    <td>
+        {{over_data.get('bowler')}}
+    </td>
+    <td>
+        {{over_data.get('batter')}}
+    </td>
+    <td>{{over_data.get('non_striker')}}</td>
+    <td>{{over_data.get('runs').get('total')}}</td>
+    {%if over_data.get('extras')%}
+    {%for key,value in over_data.get('extras').items()%}
+    <td>
+        {{key}}: {{value}}
+    </td>
+            {%endfor%}
+    {%endif%}
+    {%if over_data.get('wickets') %}
+<td>
+Wicket: {{over_data.get('wickets').0.get('player_out')}}({{over_data.get('wickets').0.get('kind')}})
+</td>
+{%endif%}
+</tr>
+{%endfor%}
+<tr>
+<td aria-hidden="true"></td>
+     <td colspan="3" align="center" bgcolor="gray" style="color:white;">
+            Total Over Runs
+        </td>
+    <td>
+        {{value.get('over_score')}}
+    </td>
+    </tr>
+{%endfor%}
+    <td colspan="4" align="right" bgcolor="#b2beb5">
+        Innings_score
+    </td>
+    <td>
+        {{feed_data.get('innings_total_run')}}
+    </td>
+           </table>
+            </br>
+            {%endfor%}
+</body>

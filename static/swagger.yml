@@ -1,0 +1,233 @@
+
+openapi: 3.0.1
+info:
+  title: San Technologies.
+  description: APIs for San Technology project.
+  termsOfService: http://sportsit.net/about-us/
+  contact:
+    email: nandimalla.mohan@sportsit.net
+  license:
+    name: SportsIT
+    url: http://sportsit.net
+  version: 1.0.0
+servers:
+  - url: ''
+    description: Application/Json
+
+paths:
+  /api/sports:
+    get:
+      tags:
+        - sports
+      summary: Get all sports list.
+      operationId: application.sports_api
+      responses:
+        200:
+          description: successful operation.
+  /api/countries/{sport_name}:
+    post:
+      tags:
+        - Countries
+      summary: Get all countires list .sport name required.
+      operationId: application.country_api
+      parameters:
+        -  in: path
+           name: sport_name
+           type: string
+           example: soccer
+           required: true
+      responses:
+        200:
+          description: successful operation.
+  /api/leagues/{sport_name}/{country_name}:
+    post:
+      tags:
+        - Leagues
+      summary: Get All league. Country and Sport names required
+      operationId: application.leagues_api
+      parameters:
+        -  in: path
+           name: sport_name
+           type: string
+           example: soccer
+           required: true
+        - in: path
+          name: country_name
+          type: string
+          example: algeria
+          required: true
+      responses:
+        200:
+          description: successful operation.
+
+  /api/matches/{sport_name}/{country_name}/{league_name}:
+    post:
+      tags:
+        - Matches
+      summary: Get all matches list.sport,country,league,names required
+      operationId: application.matches_list
+      parameters:
+        -  in: path
+           name: sport_name
+           type: string
+           example: soccer
+           required: true
+        - in: path
+          name: country_name
+          type: string
+          example: Algeria
+          required: true
+        - in: path
+          name: league_name
+          type: string
+          example: Algeria Cup
+          required: true
+      responses:
+        200:
+          description: successful operation.
+
+  /api/stats/head2head/{sport_id}/{country_id}/{league_id}/{team1_id}/{team2_id}:
+    post:
+      tags:
+        - Head2head Matches
+      summary: Get all matches list.sport,country,league,teams id's required
+      operationId: application.matches_stats
+      parameters:
+        -  in: path
+           name: sport_id
+           type: integer
+           example: 1
+           required: true
+        - in: path
+          name: country_id
+          type: integer
+          example: 12
+          required: true
+        - in: path
+          name: league_id
+          type: integer
+          example: 474
+          required: true
+        - in: path
+          name: team1_id
+          type: integer
+          example: 18995
+          required: true
+        - in: path
+          name: team2_id
+          type: integer
+          example: 18996
+          required: true
+      responses:
+        200:
+          description: successful operation.
+
+  /api/stats/recentform/{sport_id}/{country_id}/{league_id}/{team1_id}/{team2_id}:
+    post:
+      tags:
+        - Recentform Matches
+      summary: Get all matches list.sport,country,league,teams id's required
+      operationId: application.stats123
+      parameters:
+        -  in: path
+           name: sport_id
+           type: integer
+           example: 1
+           required: true
+        - in: path
+          name: country_id
+          type: integer
+          example: 12
+          required: true
+        - in: path
+          name: league_id
+          type: integer
+          example: 474
+          required: true
+        - in: path
+          name: team1_id
+          type: integer
+          example: 18995
+          required: true
+        - in: path
+          name: team2_id
+          type: integer
+          example: 18996
+          required: true
+      responses:
+        200:
+          description: successful operation.
+
+
+  /api/cricket/seasons:
+    get:
+      tags:
+        - Seasons Data
+      summary: Get Seasons Data.
+      operationId: application.send_all_seasons_list_to_api
+      responses:
+        200:
+          description: successful operation.
+
+  /api/cricket/matchids/{season}:
+    post:
+      tags:
+        - Match Data
+      summary: Get Match Data.
+      operationId: application.send_all_matchids_into_api
+      parameters:
+        - in: path
+          name: season
+          type: string
+          example: 2010-11
+          required: true
+
+      responses:
+        200:
+          description: successful operation.
+
+
+  /api/cricket/matches/{Matchid}:
+    post:
+      tags:
+        - Match Data
+      summary: Get Match Data.
+      operationId: application.get_match
+      parameters:
+        - in: path
+          name: Matchid
+          type: string
+          example: 211028
+          required: true
+
+      responses:
+        200:
+          description: successful operation.
+
+  /api/cricket/eachballdata/{Matchid}/{from_over}/{to_over}:
+    post:
+      tags:
+        - Each ball Match Data
+      summary: Get Each ball Match Data.
+      operationId: application.get_each_ball_data
+      parameters:
+        - in: path
+          name: Matchid
+          type: string
+          example: 211028
+          required: true
+        - in: path
+          name: from_over
+          type: integer
+          example: 1
+          required: true
+        - in: path
+          name: to_over
+          type: integer
+          example: 10
+          required: true
+      responses:
+        200:
+          description: successful operation.
+
+

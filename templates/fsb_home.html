@@ -1,0 +1,30 @@
+
+{%for i in messages%}
+<table class="table" style="align:center;">
+        <tbody>
+<h3 align="center" style="color:white;">Checked {{i.0}}</h3>
+<h6 align="right" style="color:gray;" >Time:  {{executed_time}}</h6>
+
+{%for j in i.1%}
+
+{%if j.1 %}
+    <tr style="background-color:#03c03c;color:white;">
+        <td>
+
+{{j.0}}
+        </td>
+    </tr>
+{%else%}
+    <tr style="background-color:#ef3038;color:white;">
+
+        <td>
+
+{{j.0}}
+        </td>
+    </tr>
+{%endif%}
+        {%endfor%}
+
+</tbody>
+</table>
+{%endfor%}

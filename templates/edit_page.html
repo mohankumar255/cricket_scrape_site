@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+        background-image:url('https://images.pexels.com/photos/5138883/pexels-photo-5138883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+   }
+   .edit_box {
+   border-radius:30px;
+   border-color:3px solid red;
+    }
+
+textarea{
+color:white;
+font-size:16px;
+background-color:rgb(120,220,120,0.5);
+}
+
+input{
+color:white;
+font-size:16px;
+background-color:rgb(120,220,120,0.5);
+}
+
+.btn-success{
+width:150px;
+height:40px;
+border-radius:20px;
+transition:0.5s;
+}
+
+.btn-success:hover{
+background-color:rgb(150,50,200,0.3);
+color:white;
+font-size:20px;
+font-color:white;
+}
+
+.edit_box title{
+color:rgb(230,30,120);
+font-size:30px;
+background-color: blue;
+margin-left: 250px;
+margin-top : 200px;
+width:250px;
+height:30px;
+}
+
+    </style>
+
+
+</head>
+<body>
+
+
+
+
+<div class="edit_box">
+
+<table border="2" align="center" width="30%;" style="margin-top:200px;">
+    <form action="/update_details" method="post">
+
+<input name="id" value="{{data.0}}" hidden>
+<tr>
+        <th style="color:white;">
+            insert_name:
+        </th>
+        <td>
+            <input name="insert_name" type="text" placeholder="insert name">
+        </td>
+    </tr>
+        <tr>
+        <th style="color:white;">
+            Why you need to update the data:
+        </th>
+        <td>
+            <input name="reason" type="text" placeholder="reson">
+        </td>
+    </tr>
+    <tr>
+        <th style="color:white;">
+            Title
+        </th>
+        <td>
+            <textarea name="title" type="text" placeholder="Title" rows="2" cols="50">{{data.1}}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th style="color:white;">
+            Description
+        </th>
+        <td>
+            <textarea name="description" type="text" rows="5" cols="50" placeholder="Enter details">{{data.2}}</textarea>
+        </td>
+    </tr>
+        <tr>
+        <td align="center">
+            <button class="btn btn-success">Update</button>
+        </td>
+    </tr>
+    </form>
+</table>
+    </div>
+</body>
+</html>

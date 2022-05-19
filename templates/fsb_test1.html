@@ -1,0 +1,22 @@
+
+
+<ul class="nav nav-tabs" style="background-color:black; width:100%;">
+   {%for i in list_items%}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{i.0}}</a>
+    <ul class="dropdown-menu" style="color:green;">
+      {%for j in i.1%}
+      <li><a  class="dropdown-item" href="/checks/{{j.0}}" >{{j.1}}</a></li>
+      {%endfor%}
+    </ul>
+  </li>
+  {%endfor%}
+  <li><a  href="/fsb_matches_data">Matches Count</a></li>
+        <li><a href="/run_fsb_sites">Run FSB Sites</a>  </li>
+        <li><a href="/t_bet_sites">10 bet sites</a>  </li>
+            <li><a href="/All_sites_run">Run ALL Sites</a>  </li>
+                <li><a href="/issues_details">FAQ</a>  </li>
+
+     <li><a href="/logout">Logout</a>  </li>
+
+</ul>

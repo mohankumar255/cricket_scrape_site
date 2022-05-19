@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+	<head>
+        <!-- CSS only -->
+
+        <style>
+
+
+
+.submit_button{
+width:80px;
+height:40px;
+border:none;
+border-radius: 10%;
+margin-left:50px;
+margin-right:20px;
+margin-top:30px;
+margin-bottom:20px;
+background-color:green;
+color:white;
+font-size:bold;
+
+}
+
+.submit_button:hover{
+background-color:red;
+
+}
+
+
+.each_row{
+
+margin-left:200px;
+margin-right:50px;
+margin-top:5px;
+margin-bottom:5px;
+
+}
+
+.title_box{
+width:20%;
+background-color:
+#3A4750;
+color:white;
+float : left;
+font-size: bold;
+margin-right:10px;
+margin-left:50px;
+}
+.details_row{
+width:50%;
+background-color:
+#FF7A8A;
+color:white;
+float.left;
+margin-left:20px;
+}
+
+.edit_box{
+margin-right:40px;
+margin-bottom:10px;
+width:5%;
+background-color:green;
+height:30px;
+color:white;
+font-weight:solid;
+display:inline-block;
+border-radius:10px;
+padding-left:5px;
+padding-top:7px;
+}
+
+.edit_box a {
+color:white;
+}
+.edit_box a:hover {
+color:white;
+}
+.edit_box:hover{
+color:white;
+background-color:blue;
+}
+
+space{
+margin-left:5px;
+margin-right:10px;
+background-color:green;
+display:inline-block;
+color:green;
+height:10px;
+width:20px;
+}
+body{
+
+background-image: url("https://tse2.mm.bing.net/th?id=OIP.YeRoXvpnle2zlGsKqu1SRwHaEo&pid=Api&P=0&w=292&h=182");
+}
+.main_table{
+margin-top:100px;
+background-image: url("https://tse2.mm.bing.net/th?id=OIP.knXw_6EpqZ0K4urT5sr7SQHaFj&pid=Api&P=0&w=227&h=170");
+}
+textarea[type=text]{
+margin-top:20px;
+margin-left:20px;
+margin-bottom:20px;
+margin-right:20px;
+}
+
+textarea[type=text]:hover{
+border-radius:30px;
+}
+
+.container{
+width:80%
+border-radius:30px;
+}
+
+span{
+color:red;
+
+}
+#logo{
+border-radius:50px;
+width:50px;
+height:50px;
+}
+        </style>
+
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="style.css">
+<script src="javascript.js">
+</script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+<body>
+
+<script>
+    function get_details(){
+name = prompt('Please enter your name')
+desc = prompt('Why are you changing the content')
+
+if (name == ''){
+alert('please enter your name');
+}
+
+if (desc == '') {
+alert('please enter your desc');
+}
+}
+
+
+</script>
+<div class="logo">
+       <a href="/"> <img id = 'logo' src="https://images.pexels.com/photos/262506/pexels-photo-262506.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load">
+    </a>
+</div>
+
+
+<div class="container" align="center">
+
+            <h4 align="center" style="color:white;font-size:40px;margin-top:30px;" class="title">Todo <span>List</span></h4>
+<br>
+                <div class="message">
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+  <h4 align="center" style="color:white;font-size:25px;"> {{messages.0}}</h4>
+    </ul>
+  {% endif %}
+{% endwith %}
+
+    </div>
+
+<table border="2" align="center" class="main_box">
+ <tr>
+     <div >
+<table border="2" align="center" width="30%;"class="main_table" >
+    <form action="/add_details" method="post">
+    <tr>
+    <tr>
+        <th style="color:black;">
+            Title
+        </th>
+        <td>
+            <textarea name="title" type="text" placeholder="Title" rows="2" cols="50"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <th style="color:black;">
+            Description
+        </th>
+        <td>
+            <textarea name="description" type="text" rows="5" cols="50" placeholder="Enter details"></textarea>
+        </td>
+    </tr>
+        <td align="center">
+            <button class="submit_button">Submit</button>
+        </td>
+    </tr>
+    </form>
+</table>
+     </div>
+</tr>
+    <tr>
+
+<br>
+
+        <br>
+
+    {%for details in issues_details_data%}
+
+<div class="each_row" align="center">
+            <div class='edit_box'><a href="/edit_details/{{details.0}}">Edit</a></div>
+
+
+     <!-- <div class="edit_box" style="background-color:red;width:80px;">  <a href="/delete_record/{{details.0}}" onclick="">Delete</a></div>
+-->
+
+<br>
+    <div class="title_box">
+        {{details.1}}
+    </div>
+    <div class="details_row" style="background-color:#3da2c3">
+       {{details.2}}
+    </div>
+</div>
+<br>
+{%endfor%}
+
+<!--
+<br>
+<table border="2" align="center" width="50%;" style="background-color:#3da2c3;">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+
+
+    </tr>
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+  <h4 align="center" style="color:Green;"> {{messages.0}}</h4>
+    </ul>
+  {% endif %}
+{% endwith %}
+
+    {%for details in issues_details_data%}
+    <tr style="border-color:white;background-color:gray;">
+        <form action="/edit_details" method="post">
+       <input type="text" name="id" value="{{details.0}}" hidden>
+        <td style="background-color:gray;color:white">
+       <h5> {{details.1}}</h5>
+        </td>
+        <td style="background-color:gray;color:white">
+            {{details.2}}<br>
+        </td>
+            <td>
+          <button>  <img align="center" src="https://tse1.mm.bing.net/th?id=OIP.fJLEYIAmxU35LuuYHZZwYwHaHa&pid=Api&P=0&w=173&h=173"
+                 style="width:20px;height:20px;" onclick="get_details()">
+              </button>
+            </td>
+
+
+        </form>
+        <form action="/delete_record" method="post">
+                   <input type="text" name="id" value="{{details.0}}" hidden>
+
+            <td>
+
+                <button>
+                    <img align="center" src="https://tse2.mm.bing.net/th?id=OIP.TG3QGNq75mPOFYVeU5nUpgAAAA&pid=Api&P=0&w=188&h=188"
+                         style="width:20px;height:20px;">
+
+                </button>
+            </td>
+        </form>
+        </form>
+    </tr>
+    {%endfor%}
+    </tr>
+</table>
+-->
+    </table>
+</div>
+
+</body>
+</html>

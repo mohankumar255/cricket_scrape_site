@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+            <table border="2" width="60%" align="center">
+                <tr>
+                    <th>Over</th>
+                    <th>Dot balls</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>6</th>
+                    <th>extras</th>
+                    <th>wickets</th>
+                    <th>Total runs</th>
+                </tr>
+{%for each_over_data in each_ball_data%}
+
+                <tr align="center">
+                    <td>{{each_over_data.0}}</td>
+                     <td>{{each_over_data.1}}</td>
+                     <td>{{each_over_data.2}}</td>
+                     <td>{{each_over_data.3}}</td>
+                     <td>{{each_over_data.4}}</td>
+                     <td>{{each_over_data.5}}</td>
+                     <td>{{each_over_data.6}}</td>
+                     <td>{{each_over_data.7}}</td>
+                     <td>{{each_over_data.8}}</td>
+                     <td>{{each_over_data.9}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+
+                <br>
+                <table border="2" align="center">
+                    <tr>
+                        <th>
+
+                        </th>
+                        {%for column in each_over_data.4%}
+                        <th>
+                            {{column}}.runs
+                        </th>
+                        {%endfor%}
+                    </tr>
+                        {%for j in each_over_data.0 %}
+
+                    <tr>
+                         <td>
+                        {{j.0}}
+                    </td>
+
+                        <td>
+                            {{j.1}}
+                        </td>
+                        <td>
+                            {{j.2}}
+                        </td>
+                        <td>
+                            {{j.3}}
+                        </td>
+                        <td>
+                            {{j.4}}
+                        </td>
+                        <td>
+                            {{j.5}}
+                        </td>
+                        <td>
+                            {{j.6}}
+                        </td>
+                        <td>
+                            {{j.7}}
+                        </td>
+
+                        </tr>
+                        {%endfor%}
+                    <tr>
+                        <td>
+                            Total
+                        </td>
+                        {%for total_amount in each_over_data.4%}
+                        <td>
+                            {{each_over_data.5}}
+                        </td>
+                        {%endfor%}
+                    </tr>
+
+                </table>
+
+
+                <br>
+                <table border="2" align="center">
+                    <tr>
+                        <th>
+
+                        </th>
+                        {%for column in each_over_data.4%}
+                        <th>
+                            {{column}}.runs
+                        </th>
+                        {%endfor%}
+                    </tr>
+                        {%for j in each_over_data.1 %}
+                    <tr>
+                         <td>
+                        {{j.0}}
+                    </td>
+
+                        <td>
+                            {{j.1}}%
+                        </td>
+                        <td>
+                            {{j.2}}%
+                        </td>
+                        <td>
+                            {{j.3}}%
+                        </td>
+                        <td>
+                            {{j.4}}%
+                        </td>
+                        <td>
+                            {{j.5}}%
+                        </td>
+                        <td>
+                            {{j.6}}%
+                        </td>
+                        <td>
+                            {{j.7}}%
+                        </td>
+
+                        </tr>
+                        {%endfor%}
+
+
+                </table>
+
+
+                <br>
+                <table border="2" align="center">
+                    <tr>
+                        <th>
+
+                        </th>
+                        {%for column in each_over_data.4%}
+                        <th>
+                            {{column}}.runs
+                        </th>
+                        {%endfor%}
+                    </tr>
+                        {%for j in each_over_data.2 %}
+
+                    <tr>
+                         <td>
+                        {{j.0}}
+                    </td>
+
+                        <td>
+                            {{j.1}}
+                        </td>
+                        <td>
+                            {{j.2}}
+                        </td>
+                        <td>
+                            {{j.3}}
+                        </td>
+                        <td>
+                            {{j.4}}
+                        </td>
+                        <td>
+                            {{j.5}}
+                        </td>
+                        <td>
+                            {{j.6}}
+                        </td>
+                        <td>
+                            {{j.7}}
+                        </td>
+                        </tr>
+                        {%endfor%}
+
+
+                </table>
+
+
+        </div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+</html>
