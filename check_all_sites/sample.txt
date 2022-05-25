@@ -1,0 +1,57 @@
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.10000 is 0
+22-05-19*************************we are not accept the purging for Queue q.10000
+22-05-19*************************The count of q.10000.onbetstatus is 0
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.10000 is 0
+22-05-19*************************Message: chrome not reachable
+  (Session info: chrome=101.0.4951.67)
+
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.becric.onbetstatus is 0
+22-05-19*************************Alert Text: Are you sure? Messages cannot be recovered after purging.
+Message: unexpected alert open: {Alert text : Are you sure? Messages cannot be recovered after purging.}
+  (Session info: chrome=101.0.4951.67)
+
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.becric.onbetstatus is 0
+22-05-19*************************Alert Text: Are you sure? Messages cannot be recovered after purging.
+Message: unexpected alert open: {Alert text : Are you sure? Messages cannot be recovered after purging.}
+  (Session info: chrome=101.0.4951.67)
+
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.10000 is 0
+22-05-19*************************Alert Text: Are you sure? Messages cannot be recovered after purging.
+Message: unexpected alert open: {Alert text : Are you sure? Messages cannot be recovered after purging.}
+  (Session info: chrome=101.0.4951.67)
+
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.10000 is 0
+22-05-19*************************Alert Text: Are you sure? Messages cannot be recovered after purging.
+Message: unexpected alert open: {Alert text : Are you sure? Messages cannot be recovered after purging.}
+  (Session info: chrome=101.0.4951.67)
+
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.10000 is 0
+22-05-19*************************Alert Text: Are you sure? Messages cannot be recovered after purging.
+Message: unexpected alert open: {Alert text : Are you sure? Messages cannot be recovered after purging.}
+  (Session info: chrome=101.0.4951.67)
+
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.10000 is 0
+22-05-19*************************Alert Text: Are you sure? Messages cannot be recovered after purging.
+Message: unexpected alert open: {Alert text : Are you sure? Messages cannot be recovered after purging.}
+  (Session info: chrome=101.0.4951.67)
+
+22-05-19*************************Rabit mq site is logged in successfully
+22-05-19*************************The count of q.10000 is 0
+22-05-19*************************we are accepting the purging for Queue q.10000
+22-05-19*************************The count of q.10000.onbetstatus is 0
+22-05-19*************************we are accepting the purging for Queue q.10000.onbetstatus
+22-05-19*************************The count of q.10000.onbetstatus.test.local is 0
+22-05-19*************************we are accepting the purging for Queue q.10000.onbetstatus.test.local
+22-05-19*************************The count of q.10000.oncashout is 0
+22-05-19*************************Message: chrome not reachable
+  (Session info: chrome=101.0.4951.67)
+
