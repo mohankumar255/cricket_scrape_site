@@ -764,15 +764,16 @@ def betyetu_upcoming(driver, site_name):
 
 
 def site_checks(site_name, url, user_id, password, stake_amount, filters):
+    print(filters)
     all_checks_status = []
     driver = webdriver.Chrome()
     driver.get(url)
     driver.maximize_window()
     time.sleep(3)
     try:
-        login_status = ['Not Logged Into Site', False]
+        login_status = ['Not Logged Into Site', False,'Login']
         start_time = time.time()
-        all_checks_status.append([url, True])
+        all_checks_status.append([url, True,'Site Name'])
         if 'betyetu' in url:
             select_language(driver)
         disbale_header_notification(driver)
@@ -781,54 +782,55 @@ def site_checks(site_name, url, user_id, password, stake_amount, filters):
         else:
             # pass
             if 1 in filters:
-                all_checks_status.append(register(url, driver, user_id, password))
+                all_checks_status.append(register(url, driver, user_id, password).append('Register'))
         disbale_header_notification(driver)
         click_home_page(driver)
         start_time1 = time.time()
         if 11 in filters:
             if 'betlion' in url:
-                all_checks_status.append(upcoming(driver, site_name))
+                all_checks_status.append(upcoming(driver, site_name).append('Upcoming'))
             else:
-                all_checks_status.append(betyetu_upcoming(driver, site_name))
+                all_checks_status.append(betyetu_upcoming(driver, site_name).append('Upcoming'))
         if 2 in filters:
-            all_checks_status.append(highlights(driver, site_name))
+            all_checks_status.append(highlights(driver, site_name).append('Highlights'))
         if 3 in filters:
-            all_checks_status.append(livenow(driver, site_name))
+            all_checks_status.append(livenow(driver, site_name).append('Livenow'))
         disbale_header_notification(driver)
         if 4 in filters:
-            login_status = login(driver, user_id, password)
-            print(login_status)
+            login_status = login(driver, user_id, password).append('Login')
+
         if login_status[1]:
             time.sleep(10)
             all_checks_status.append(login_status)
             disable_footer_notification(driver)
             if 5 in filters:
                 # all_checks_status.append(bet_placement(driver,  url,  stake_amount,  True))
-                all_checks_status.append(bet_placement123(driver, url, stake_amount, False))
+                all_checks_status.append(bet_placement123(driver, url, stake_amount, False).append('Single Beetplacement'))
             if 12 in filters:
-                all_checks_status.append(bet_placement123(driver, url, stake_amount, True))
+                all_checks_status.append(bet_placement123(driver, url, stake_amount, True).append('Multi Betplacement'))
             if 6 in filters:
                 try:
-                    all_checks_status.append(jackpot_page(driver, url, stake_amount))
+                    all_checks_status.append(jackpot_page(driver, url, stake_amount).append('Jackpot'))
                 except:
                     pass
             if 7 in filters:
-                all_checks_status.append(deposit(driver))
+                all_checks_status.append(deposit(driver).append('Deposite'))
             if 8 in filters:
                 my_account_tab(driver)
                 if 'betlion' in url:
-                    all_checks_status.append(my_bet_slip(driver))
+                    all_checks_status.append(my_bet_slip(driver).append("Cashout"))
                     time.sleep(5)
                 else:
-                    all_checks_status.append(cashout_11(driver))
+                    all_checks_status.append(cashout_11(driver).append('Cashout'))
                 click_home_page(driver)
             disbale_header_notification(driver)
             disable_footer_notification(driver)
             click_home_page(driver)
-            if 9 in filters:
+            if 13 in filters:
+                print('=========')
                 my_account_tab(driver)
                 try:
-                    all_checks_status.append(logout(driver))
+                    all_checks_status.append(logout(driver).append('Logout'))
                 except Exception as error:
                     print(error)
                     all_checks_status.append(['Error occured at logout', False])
@@ -841,6 +843,7 @@ def site_checks(site_name, url, user_id, password, stake_amount, filters):
         all_checks_status.append([f'Error occured at {url}', False])
     driver.close()
     return all_checks_status
+
 
 # print(site_checks('betlion',  'https://mobile.betlion.ke',  '900123123',  '0000',  2, [1]))
 # site_checks('betyetu',  'https://betyetu.co.mz/',  847479080,  '2311',  10, [4,5])

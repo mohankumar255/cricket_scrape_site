@@ -32,6 +32,15 @@ color:white;
 
 }
 
+#select_all_button {
+width:15px;
+margin-left:2px;
+height:10px;
+border-radius:10px;
+background-color:red;
+
+}
+
    </style>
 
 
@@ -65,7 +74,11 @@ select_elements[x].checked = true;
 <form action="/t_bet_check_site" method="post">
         <input name="site_id" value="{{site_id}}" hidden>
 <table border="2px" align="center" style="border-color:blue;border-style:solid;">
-<input name="all_selections" onclick="select_all()" type="checkbox">
+<th >
+    <div id="select_all_button">
+    <input  name="all_selections" onclick="select_all()" type="checkbox">
+</div>
+</th>
     {%for function_name in functions_list%}
     <tr style="border-radius: 12px;">
         <th style="color:white;border-color:blue;">

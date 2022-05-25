@@ -5,19 +5,15 @@ import concurrent.futures
 from flask import render_template, request, redirect, flash, session
 from Fsb_Sites_checks.betlion_login import site_checks
 from Fsb_Sites_checks.fsb_db import *
-
+from Fsb_Sites_checks.shabiki import check_site as shabiki_check_site
 # app=Flask(__name__)
 # app.secret_key='\xfc\\%\xa5\xf6\x1c\xfe\xde".\xfc\xb32\xab\x8c\xbd\xf3\x89\tN6[\xca\xa9'
 all_menus_list = get_all_menus()
-
-
 all_submenus_details = get_all_submenus_list()
-print(all_menus_list)
-
-print(all_submenus_details)
-
 mobile_sites = []
 opera_sites = []
+functions_list = get_functions()
+print(functions_list)
 for site in all_submenus_details:
     if '//m.' in site[1]:
         opera_sites.append(site)
@@ -27,7 +23,14 @@ for site in all_submenus_details:
 
 def each_site_check(id, site_name, filters):
     for details in all_submenus_details:
-        if details[5] == int(id):
+        if details[5]==11:
+            data_details = details
+            a = shabiki_check_site(site_name, data_details[1], data_details[3], data_details[4],
+                            data_details[2],
+                            filters)
+            return a
+
+        elif details[5] == int(id):
             data_details = details
             a = site_checks(site_name, data_details[1], data_details[3], data_details[4], data_details[2],
                     filters)

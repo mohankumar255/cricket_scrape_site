@@ -1,5 +1,5 @@
 import time
-
+from Fsb_Sites_checks.fsb_db import *
 from flask import Flask
 from Cricket_application import *
 from Fsb_Sites_checks.test1 import *
@@ -134,10 +134,10 @@ def send_all_seasons_list_to_api():
 def checks(site_id):
     return Application.checks(site_id)
 
+
 @app.route('/t_bet_checks/<site_id>')
 def ten_bet_checks(site_id):
     return application.checks(site_id)
-
 
 
 @app.route('/api/cricket/matchids/<season>', methods=['GET', 'POST'])
@@ -153,12 +153,7 @@ def get_each_ball_data(matchid, from_over, to_over):
     return json.dumps(each_ball_data)
 
 
-
-from Fsb_Sites_checks.fsb_db import *
-
 def edit_details(id):
-    #if request.method=='POST':
-        #id = request.form.get('id')
     data1 = get_issues_details()
     for data in data1:
         if data[0] == int(id):
@@ -168,7 +163,6 @@ def edit_details(id):
 
 
 def delete_records(id):
-
     delete_record(int(id))
     flash('Record Deleted')
     return redirect('/issues_details')
@@ -190,6 +184,7 @@ def run_auto_fsb_sites():
     while True:
         run_fsb_sites()
         time.sleep(300)
+
 
 def run_10bet_sites():
        while True:

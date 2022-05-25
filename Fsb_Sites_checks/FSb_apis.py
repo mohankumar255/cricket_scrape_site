@@ -74,11 +74,6 @@ def create_urls(site_name,sport_name,league_name):
         userid='playabetapi'
         sport_url=f'https://playabet-api.fsbtech.com/fsb-api-rest/bet/category/{sport_name}.json'
         league_url=f'https://playabet-api.fsbtech.com/fsb-api-rest/bet/category/{sport_name}/{league_name}.json'
-    elif 'parimatch' in site_name:
-        password = 'ZMGHqkSq8muhNnHY'
-        userid = 'playabetapi'
-        sport_url = f'https://playabet-api.fsbtech.com/fsb-api-rest/bet/category/{sport_name}.json'
-        league_url = f'https://playabet-api.fsbtech.com/fsb-api-rest/bet/category{sport_name}/{league_name}.json'
     return [sport_url,league_url,userid,password]
 
 def individual_event_feeds(site_name,event_id):

@@ -3,8 +3,6 @@ import time
 from Fsb_Sites_checks.Feed_checks import live_matches_all_event_ids
 
 
-
-
 def click_home_page(driver):
     home_page_logo_tag = driver.find_element_by_class_name("BLM-mainHeader-logo")
     home_page_logo_a_tag = home_page_logo_tag.find_element_by_tag_name('a')

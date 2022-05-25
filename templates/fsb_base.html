@@ -7,7 +7,8 @@
             color:white;
             }
             body{
-            background-image:url("https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+            background-image:url("https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-size:cover;
             }
         </style>
 
@@ -46,8 +47,6 @@
                        {% if show_messages%}
                         {% include 'fsb_home.html'%}
                         {%endif%}
-
-
                                 {%if matches_count%}
                                 {%include 'show matches list.html'%}
                                 {%endif%}

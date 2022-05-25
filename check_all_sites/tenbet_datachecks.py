@@ -8,6 +8,9 @@ from selenium.webdriver.common.keys import Keys
 # driver.get('https://10bet.com.gh')
 # time.sleep(5)
 
+
+
+
 def sporst_list(driver):
     live_match_button = driver.find_element_by_id('livenow')
     a_tag = live_match_button.find_element_by_tag_name('a')
@@ -132,6 +135,24 @@ def live_matches_data_checks(driver , is_live):
     return len(sports_list_buttons)
 
 
+def get_odds_data(driver,count):
+    sports_list_buttons = driver.find_elements_by_class_name('SB-sportCategoryListItem-container')
+    i = sports_list_buttons[count]
+    i.click()
+    time.sleep(5)
+    try:
+        sport_id_tag = i.find_element_by_class_name('SB-txtWrapper')
+        sport_id = sport_id_tag.get_attribute('id')
+        sport_id = int(sport_id)
+        site_total_matches = driver.find_elements_by_class_name('SB-matchDetails')
+        site_total_matches = len(site_total_matches)
+    except Exception as error:
+        print(error)
+        pass
+
+
+
+
 def check_all_sports_data(driver,is_live):
     if is_live:
         count = live_matches_data_checks(driver,is_live)
@@ -143,6 +164,7 @@ def check_all_sports_data(driver,is_live):
                 add_data += get_values(data1, is_live)
             except:
                 pass
+            break
 
         return [add_data,False]
     else:

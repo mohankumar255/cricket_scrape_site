@@ -21,9 +21,84 @@ userid_4 = 840840840
 password_4 = 1234
 
 
+def login1(driver, url, user_id, password):
+    print(url,user_id,password)
+    try:
+        time.sleep(5)
+        userid_input = driver.find_element_by_id('regMobile')
+        password_input = driver.find_element_by_id('regPass')
+        userid_input.send_keys(user_id)
+        password_input.send_keys(password)
+        time.sleep(1)
+        a1 = driver.find_elements_by_tag_name('button')
+        for i in a1:
+            print(i.get_attribute('class'))
+        count = 0
+        for i in a1:
+            if '//m' in url:
+                if 'btn SB-btnSecondary active SB-btnMedium' == i.get_attribute('class'):
+                    print(i.get_attribute('class'))
+                    time.sleep(1)
+                    print('click')
+                    i.click()
+                    break
+
+            else:
+                if 'btn SB-btnSecondary active SB-btnLarge' in i.get_attribute('class'):
+                    time.sleep(1)
+                    print('click')
+                    i.click()
+                    break
+        time.sleep(3)
+        is_login = False
+        print('--------------------------------')
+        for i in range(8):
+            print(url)
+            try:
+                mainbalance = driver.find_element_by_id('mainHeaderBalance')
+                is_login = True
+                message = 'Logeed in successfully'
+                break
+            except Exception as error:
+                print(error)
+                driver.refresh()
+                time.sleep(2)
+                userid_input = driver.find_element_by_id('regMobile')
+                password_input = driver.find_element_by_id('regPass')
+                userid_input.send_keys(user_id)
+                password_input.send_keys(password)
+                time.sleep(1)
+                a1 = driver.find_elements_by_tag_name('button')
+                count = 0
+                for i in a1:
+                    if '//m.' in url:
+                        if 'btn SB-btnSecondary active SB-btnMedium' == i.get_attribute('class'):
+                            print(i.get_attribute('class'))
+
+                            time.sleep(1)
+                            print('click')
+                            i.click()
+                            break
+                    else:
+                        if 'btn SB-btnSecondary active SB-btnLarge' in i.get_attribute('class'):
+                            time.sleep(1)
+                            print('click')
+                            i.click()
+                            time.sleep(3)
+                        break
+                is_login = False
+                message = 'Login failed please check it'
+    except Exception as error:
+        print(error)
+        is_login = False
+        message = 'Login failed please check it'
+    return [message, is_login]
+
+
+
 def login(driver, url, user_id, password):
     print(user_id,password)
-    if True:
+    try:
         time.sleep(10)
         userid_input = driver.find_element_by_id('userMobileNo')
         password_input = driver.find_element_by_id('userPassword')
@@ -52,9 +127,9 @@ def login(driver, url, user_id, password):
             is_login = False
             message = 'Login failed please check it'
         time.sleep(3)
-    # except Exception as error:
-    #     is_login = False
-    #     message = 'Login failed please check it'
+    except Exception as error:
+        is_login = False
+        message = 'Login failed please check it'
     return [message, is_login]
 
 
@@ -98,17 +173,7 @@ def jackpot(driver):
         else:
             message = 'There are no jackpots'
         count = 0
-        while True:
-            try:
-                driver.execute_script(f'window.scrollTo(0,-{count});')
-                home_page_logo = driver.find_element_by_class_name('SB-mainHeader-logo')
-                home_page_logo.click()
-                time.sleep(5)
-                break
-            except:
-                count = +400
-            if count >= 30000:
-                break
+    driver.execute_script(f'window.scrollTo(0,2)')
     return [message, is_jackpot_availble]
 
 
@@ -161,6 +226,7 @@ def bet_placement1(driver, site_name, stake, is_multibet):
         message = bet_status_tag.text
         is_bet = True
     except Exception as error:
+        print(error)
         is_bet = False
         message = 'Bet placement is failed'
     return [message, is_bet]
@@ -217,13 +283,18 @@ def logout(driver):
     try:
         balance_button = driver.find_element_by_class_name('SB-dropdown-btn')
         balance_button.click()
-        time.sleep(15)
+        time.sleep(4)
         a = driver.find_element_by_class_name("SB-myAccountList")
         a1 = a.find_elements_by_class_name('SB-myAccountList-item')
         a2 = a1[-1].find_element_by_class_name('SB-myAccountList-item-content')
         a3 = a2.find_element_by_tag_name('a')
-        a3.click()
-        time.sleep(10)
+        for i in range(5):
+            try:
+                a3.click()
+                break
+            except Exception as error:
+                print(error)
+        time.sleep(5)
         is_logout = True
         logout_message = 'Logout Done'
     except Exception as error:
@@ -298,11 +369,24 @@ def opera_cashouts(driver):
 
 def deposite(driver):
     driver_class_name = driver.find_element_by_class_name('SB-mainHeader-freeBetDeposit')
-    a_tag = driver_class_name.find_element_by_tag_name('a')
-    a_tag.click()
+    a_tag = driver_class_name.find_element_by_tag_name('button')
+    print(a_tag.text)
+    for i in range(5):
+        try:
+            a_tag.click()
+            time.sleep(2)
+            break
+        except:
+            pass
     time.sleep(5)
     online_id = driver.find_element_by_id('Online')
-    online_id.click()
+    for i in range(5):
+        try:
+            online_id.click()
+            time.sleep(2)
+            break
+        except:
+            pass
     time.sleep(5)
     a1 = driver.find_element_by_class_name('SB-radioBoxGroup')
     b = a1.find_element_by_tag_name('input')
@@ -312,10 +396,14 @@ def deposite(driver):
     # time.sleep(2)
     # operator_id.click()
     # time.sleep(2)
-    amount_input = driver.find_element_by_id('enterDepositValue')
-    amount_input.clear()
+    # amount_input = driver.find_element_by_id('enterDepositValue')
+    # amount_input.clear()
+    # time.sleep(2)
+    # amount_input.send_keys(5)
+    a1 = driver.find_element_by_id('depositAmount1')
+    a1.click()
     time.sleep(2)
-    amount_input.send_keys(5)
+
     deposite_button = driver.find_element_by_id('disableDepositButtonClick')
     deposite_button.click()
     time.sleep(5)
@@ -429,21 +517,31 @@ def check_site(site_name,url, stake,userid, password,filters):
     driver.get(url)
     driver.maximize_window()
     time.sleep(3)
-
+    print(filters)
     all_details = []
-    all_details.append([url, True])
+    all_details.append([url, True,'Site Name'])
     if True:
         if 4 not in filters:
             home_page_logo = driver.find_element_by_class_name('SB-mainHeader-logo')
             home_page_logo.click()
             time.sleep(10)
             if 2 in filters:
-                all_details.append(check_all_sports_data(driver, False))
+                highlights_data = check_all_sports_data(driver, False)
+                highlights_data.append('Highlights')
+                print(highlights_data)
+                all_details.append(highlights_data)
             if 3 in filters:
-                all_details.append(check_all_sports_data(driver, True))
+                live_now = check_all_sports_data(driver, True)
+                live_now.append('Livenow')
+                all_details.append(live_now)
         else:
             if 4 in filters:
-                login_detials = login(driver, url, userid, password)
+                print('login=======')
+                try:
+                    login_detials = login1(driver, url, userid, password)
+                    login_detials.append('Login')
+                except Exception as error:
+                    login_detials = ['Login Failed',False,'Login']
                 all_details.append(login_detials)
                 if login_detials[1]:
                     home_page_logo = driver.find_element_by_class_name('SB-mainHeader-logo')
@@ -454,25 +552,20 @@ def check_site(site_name,url, stake,userid, password,filters):
                     except:
                         pass
                     if 2 in filters:
-                        all_details.append(check_all_sports_data(driver, False))
+                        highlights_data = check_all_sports_data(driver, False)
+                        highlights_data.append('Highlights')
+                        all_details.append(highlights_data)
                     if 3 in filters:
-                        all_details.append(check_all_sports_data(driver, True))
-                    if 13 in filters:
-                        try:
-                            all_details.append(withdraw(driver))
-                        except:
-                            all_details.append(['Withdraw Failed',False])
-                    if 7 in filters:
-                        try:
-                            all_details.append(deposite(driver))
-                        except:
-                            all_details.append(['Deposite Failed',False])
+                        live_now = check_all_sports_data(driver, True)
+                        live_now.append('Livenow')
+                        all_details.append(live_now)
                     if 5 in filters:
                         try:
-                            if 'm.' in url:
+                            if '//m.' in url:
                                 bet_placement_data= opera_site_betplacement(driver,stake,False)
                             else:
                                 bet_placement_data = bet_placement1(driver, site_name, stake, False)
+                            bet_placement_data.append('Single Betplacement')
                             all_details.append(bet_placement_data)
                             if bet_placement_data[0]:
                                 pass
@@ -486,6 +579,7 @@ def check_site(site_name,url, stake,userid, password,filters):
                                 bet_placement_data = opera_site_betplacement(driver, stake, True)
                             else:
                                 bet_placement_data = bet_placement1(driver, site_name, stake, True)
+                            bet_placement_data.append('Multi betPlacement')
                             all_details.append(bet_placement_data)
                             if bet_placement_data[0]:
                                 pass
@@ -494,18 +588,44 @@ def check_site(site_name,url, stake,userid, password,filters):
                         except:
                             pass
                         time.sleep(5)
+                    if 9 in filters:
+                        try:
+                            withdraw_data = withdraw(driver)
+                            withdraw_data.append('WithDraw')
+                            all_details.append(withdraw_data)
+                        except:
+                            all_details.append(['Withdraw Failed',False,'Withdraw'])
+                    if 7 in filters:
+                        time.sleep(3)
+                        try:
+                            deposite_data = deposite(driver)
+                            deposite_data.append('Deposte')
+                            all_details.append(deposite_data)
+                        except Exception as error:
+                            print(error)
+                            all_details.append(['Deposite Failed',False,'Deposte'])
+
                     if 8 in filters:
-                        if 'm.' in url:
-                            all_details.append(opera_cashouts(driver))
-                        else:
-                            all_details.append(cashout(driver))
+                        try:
+                            if 'm.' in url:
+                                cashout_data = opera_cashouts(driver)
+                            else:
+                                cashout_data =cashout(driver)
+                        except Exception as error:
+                            print(error)
+                            cashout_data = ['Cashout Failed or no cashouts available ',False]
+                        cashout_data.append('Cashout')
+                        all_details.append(cashout_data)
                     if 6 in filters:
                         try:
-                            all_details.append(jackpot(driver))
+                            jackpot_data = jackpot(driver)
+                            jackpot_data.append('Jackpot')
+                            all_details.append(jackpot_data)
                         except:
-                            all_details.append(['Jackpot failed',False])
-                    if 9 in filters:
+                            all_details.append(['Jackpot failed',False,'jackpot'])
+                    if 13 in filters:
                         logout_data = logout(driver)
+                        logout_data.append('Logout')
                         all_details.append(logout_data)
                         if logout_data[0]:
                             pass
@@ -513,11 +633,11 @@ def check_site(site_name,url, stake,userid, password,filters):
                             send_mail(f'Logout Failed in {site_name}', logout_data[1])
                 else:
                     send_mail(f'Login Failed in {site_name}', login_detials[1])
-
-        #all_details.append([f'Error occured at {site_name}',False])
+    # except Exception as error:
+    #     all_details.append([f'Error occured at {site_name} {str(error)}',False,'Site Error'])
     driver.close()
+    print(all_details)
     return all_details
-#count = 0
 
 
 def site_number(site_number,filters):
